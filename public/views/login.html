@@ -1,0 +1,46 @@
+<!-- views/login.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Login</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+       <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container" style="padding-top:40px;">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+             <section><div id="container_demo"><div id="wrapper"><div id="login" class="animate form">
+            <form action="/login" method="post">
+                <h1>Log in</h1> 
+                <p> 
+                    <label> Your Email ID</label>
+                        <input name="user"  ng-model="user.name"required type="text" placeholder="user email id" class="form-control"/>
+                </p>
+                <p> 
+                    <label> Your password </label>
+                        <input name="password" ng-model="user.password"required type="password" placeholder="eg. X8df!90EO" class="form-control"/> 
+                <p class="login button"> 
+                    <input type="submit" value="Login"> 
+                </p>
+                <p style="text-align:right;">
+                                Forgot Password
+                </p>
+            </form></div> </div></div></section>  
+        </div>
+      <div class="col-md-4"></div>
+    </div>
+</div>
+</body>
+</html>

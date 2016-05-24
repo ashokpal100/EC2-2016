@@ -1,0 +1,30 @@
+{
+  "name": "myApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "pal",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.4.12",
+    "morgan": "^1.7.0",
+    "mysql": "^2.10.2",
+    "nodemailer": "^0.7.1",
+    "nodemailer-smtp-transport": "^2.4.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "xoauth2": "^1.1.0"
+  }
+}

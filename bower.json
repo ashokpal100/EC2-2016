@@ -1,0 +1,16 @@
+{
+  "name": "myApp",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "pal"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ashokpal100/git",
+  "moduleType": [
+    "node"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
