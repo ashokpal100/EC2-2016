@@ -13,7 +13,7 @@ var connection = mysql.createConnection
    ({
      host     : 'testdbinstance.cdpx0mgjgscn.us-east-1.rds.amazonaws.com',
      user     : 'test',
-     password : 'xxx',
+     password : 'test',
      database : 'mydatabase'
    }); 
 
