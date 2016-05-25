@@ -70,7 +70,7 @@ console.log("connection.....");
                 newUserMysql.fname    = req.body.fname;
                 newUserMysql.lname    = req.body.lname;
                 newUserMysql.email    = email;
-                newUserMysql.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null); // use the generateHash function in our user model
+                newUserMysql.password = password;// use the generateHash function in our user model
                 var insertQuery = "INSERT INTO signup ( fname, lname, email, password ) values ('" + newUserMysql.fname +"','" + newUserMysql.lname +"','" + newUserMysql.email +"','"+ newUserMysql.password +"')";
                 connection.query(insertQuery,function(err,rows){
                 newUserMysql.id = rows.insertId;
@@ -102,7 +102,7 @@ console.log("connection.....");
                 return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
             } 
             console.log(rows[0]);
-            if (bcrypt.compareSync(password, rows[0].password))
+            if (password==(rows[0].password))
                  return done(null, rows[0]);
              else
                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
