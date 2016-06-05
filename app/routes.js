@@ -18,6 +18,11 @@ module.exports = function(app, passport)
     app.get('/signup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
+     app.get('/alert', function(req, res) {
+        var alert={"alertMessage":{"msg":"some words","name":"Ram","school":"TCP"}};
+        console.log(alert);
+        res.send(alert);
+    });
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section

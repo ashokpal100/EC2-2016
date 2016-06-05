@@ -11,9 +11,9 @@ var mysql = require('mysql');
 
 var connection = mysql.createConnection
    ({
-     host     : 'testdbinstance.cdpx0mgjgscn.us-east-1.rds.amazonaws.com',
-     user     : 'test',
-     password : 'test',
+     host     : 'localhost',
+     user     : 'root',
+     password : '2016',
      database : 'mydatabase'
    }); 
 
@@ -33,19 +33,19 @@ console.log("connection.....");
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        connection.query("select * from signup where id = "+id,function(err,rows){   
+        connection.query("select * from login where id = "+id,function(err,rows){   
             done(err, rows[0]);
         });
     });
     
 
     // =========================================================================
-    // LOCAL SIGNUP ============================================================
+    // LOCAL login ============================================================
     // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
+    // we are using named strategies since we have one for login and one for login
     // by default, if there was no name, it would just be called 'local'
 
-    passport.use('local-signup', new LocalStrategy({
+    passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
@@ -55,13 +55,13 @@ console.log("connection.....");
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        connection.query("select * from signup where email = '"+email+"'",function(err,rows){
+        connection.query("select * from login where email = '"+email+"'",function(err,rows){
             console.log(rows);
             console.log("above row object");
             if (err)
                 return done(err);
              if (rows.length) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                return done(null, false, req.flash('loginMessage', 'That email is already taken.'));
             } else {
 
                 // if there is no user with that email
@@ -71,7 +71,7 @@ console.log("connection.....");
                 newUserMysql.lname    = req.body.lname;
                 newUserMysql.email    = email;
                 newUserMysql.password = password;// use the generateHash function in our user model
-                var insertQuery = "INSERT INTO signup ( fname, lname, email, password ) values ('" + newUserMysql.fname +"','" + newUserMysql.lname +"','" + newUserMysql.email +"','"+ newUserMysql.password +"')";
+                var insertQuery = "INSERT INTO login ( fname, lname, email, password ) values ('" + newUserMysql.fname +"','" + newUserMysql.lname +"','" + newUserMysql.email +"','"+ newUserMysql.password +"')";
                 connection.query(insertQuery,function(err,rows){
                 newUserMysql.id = rows.insertId;
                 console.log(newUserMysql);
@@ -84,7 +84,7 @@ console.log("connection.....");
     // =========================================================================
     // LOCAL LOGIN =============================================================
     // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
+    // we are using named strategies since we have one for login and one for login
     // by default, if there was no name, it would just be called 'local'
 
     passport.use('local-login', new LocalStrategy({
@@ -95,7 +95,7 @@ console.log("connection.....");
     },
     function(req, email, password, done) { // callback with email and password from our form
 
-         connection.query("SELECT * FROM signup WHERE `email` = '" + email + "'",function(err,rows){
+         connection.query("SELECT * FROM login WHERE `email` = '" + email + "'",function(err,rows){
             if (err)
                 return done(err);
              if (!rows.length) {

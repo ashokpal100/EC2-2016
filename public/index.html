@@ -14,11 +14,42 @@
       <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
       <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
       <script type="text/javascript">
-      var maineApp = angular.module('myApp', []);
+              (function() {
+  var isDlgOpen;
+  angular
+    .module('toastDemo2', ['ngMaterial'])
+    .controller('AppCtrl', function($scope, $mdToast) {
+      $scope.showCustomToast = function() {
+        $mdToast.show({
+          hideDelay   : 9900000,
+          position    : 'bottom right',
+          controller  : 'ToastCtrl',
+          templateUrl : 'toast-template.html'
+        });
+      };
+    })
+    .controller('ToastCtrl', function($scope, $mdToast, $mdDialog , $http) {
+      $http.get('/alert').success(function(res){
+        $scope.user={};
+        console.log(res);
+        $scope.user = res;
+         console.log($scope.user.alertMessage);
+      });
+      $scope.closeToast = function() {
+        if (isDlgOpen) return;
+        $mdToast
+          .hide()
+          .then(function() {
+            isDlgOpen = false;
+          });
+      };
+      
+    });
+})();
       </script>
 </head>
   </head>
-  <body  ng-app="myLogin">
+  <body  ng-app="toastDemo2">
     <nav class="navbar navbar-inverse" role="navigation" style="margin-bottom:0px;">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
@@ -45,7 +76,18 @@
     </nav>
 
       <div  class="row" style="">
-        <div class="col-md-12 col-xs-12"></div>
+        <div class="col-md-12 col-xs-12">
+          <div ng-controller="AppCtrl" class="inset" ng-cloak style="height:300px; padding: 25px;">
+                <div layout="row">
+                  <p>
+                    &nbsp;
+                  </p>
+                  <md-button ng-click="showCustomToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;" >
+                    Show Alert
+                  </md-button>
+                </div>
+              </div>
+        </div>
     </div>
   </body>
 </html>     
